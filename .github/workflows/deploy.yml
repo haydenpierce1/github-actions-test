@@ -36,9 +36,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build_prod_${{ github.ref_name }}
-          path: build
 
       - name: Output build contents
-        run: cat build/build_prod_${{ github.ref_name }}
+        run: cat /__w/github-actions-test/github-actions-test/build_prod_${{ github.ref_name }}
 
 
