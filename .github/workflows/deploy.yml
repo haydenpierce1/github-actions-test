@@ -38,6 +38,6 @@ jobs:
           name: build_prod_${{ github.ref_name }}
 
       - name: Output build contents
-        run: cat /__w/github-actions-test/github-actions-test/build_prod_${{ github.ref_name }}
+        run: ls -R /
 
 
