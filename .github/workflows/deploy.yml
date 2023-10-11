@@ -1,0 +1,22 @@
+name: Manual Trigger on Tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag name'
+        required: true
+    types:
+      - manual
+
+jobs:
+  build:
+    if: startsWith(github.event_name, 'manual') && github.event.inputs.tag != null
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Display Tag Name
+        run: echo "Tag name is ${{ github.event.inputs.tag }}"
