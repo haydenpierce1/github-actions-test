@@ -1,11 +1,9 @@
 name: Manual Trigger on Tag
 
 on:
-  workflow_dispatch:
-    inputs:
-      foobar:
-        description: 'Random Input'
-        required: true
+  push:
+    branches:
+      - 'releases/**'
 
 jobs:
   build:
