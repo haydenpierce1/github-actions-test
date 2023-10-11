@@ -40,4 +40,7 @@ jobs:
       - name: Output build contents
         run: ls -R /__w/
 
+      - name: Output build contents
+        run: cat /__w/github-actions-test/github-actions-test/build.txt
+
 
