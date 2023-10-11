@@ -25,5 +25,20 @@ jobs:
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
         with:
-          name: build_prod_{{ github.ref }}
+          name: build_prod_${{ github.ref }}
           path: build.txt
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    container: php:latest
+    steps:
+      - name: Download a single artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build_prod_${{ github.ref }}
+          path: build
+
+      - name: Output build contents
+        run: cat build/build_prod_${{ github.ref }}
+
+
