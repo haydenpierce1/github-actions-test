@@ -25,7 +25,7 @@ jobs:
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
         with:
-          name: build_prod_${{ github.ref }}
+          name: build_prod_${{ github.ref_name }}
           path: build.txt
   deploy:
     needs: build
@@ -35,10 +35,10 @@ jobs:
       - name: Download a single artifact
         uses: actions/download-artifact@v3
         with:
-          name: build_prod_${{ github.ref }}
+          name: build_prod_${{ github.ref_name }}
           path: build
 
       - name: Output build contents
-        run: cat build/build_prod_${{ github.ref }}
+        run: cat build/build_prod_${{ github.ref_name }}
 
 
