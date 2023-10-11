@@ -12,4 +12,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Display Tag Name
-        run: echo "Tag name is ${{ github.base_ref }}"
+        run: echo "Tag name is ${{ toJson(github) }}"
