@@ -3,8 +3,8 @@ name: Manual Trigger on Tag
 on:
   workflow_dispatch:
     inputs:
-      tag:
-        description: 'Tag name'
+      foobar:
+        description: 'Random Input'
         required: true
     types:
       - manual
@@ -15,8 +15,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check if the triggering ref is a tag
+        run: |
+          if [[ "${{ github.event_name }}" != "workflow_dispatch" || -z "${{ github.event.inputs.tag }}" ]]; then
+            echo "This workflow was not triggered with a tag. Exiting..."
+            exit 0
+          fi
+
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Display Tag Name
-        run: echo "Tag name is ${{ github.event.inputs.tag }}"
+        run: echo "Tag name is ${{ github.event.inputs.foobar }}"
