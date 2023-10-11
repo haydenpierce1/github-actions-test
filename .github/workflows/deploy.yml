@@ -6,13 +6,10 @@ on:
       foobar:
         description: 'Random Input'
         required: true
-    types:
-      - manual
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Check if the triggering ref is a tag
         run: |
