@@ -6,8 +6,6 @@ on:
       foobar:
         description: 'Random Input'
         required: true
-    types:
-      - manual
 
 jobs:
   build:
