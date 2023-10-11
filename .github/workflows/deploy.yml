@@ -15,5 +15,9 @@ jobs:
     steps:
       - name: Display Tag Name
         run: echo "Tag name is ${{ toJson(github) }}"
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Generate build
         run: php src/build.php
