@@ -11,7 +11,6 @@ on:
 
 jobs:
   build:
-    if: startsWith(github.event_name, 'manual') && github.event.inputs.tag != null
     runs-on: ubuntu-latest
 
     steps:
