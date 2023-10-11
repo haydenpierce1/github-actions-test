@@ -38,6 +38,6 @@ jobs:
           name: build_prod_${{ github.ref_name }}
 
       - name: Output build contents
-        run: ls -R /
+        run: ls -R /__w/
 
 
