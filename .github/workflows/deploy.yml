@@ -21,3 +21,9 @@ jobs:
 
       - name: Generate build
         run: php src/build.php
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: build_prod_{{ github.ref }}
+          path: build.txt
