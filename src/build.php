@@ -5,8 +5,8 @@ $rootPath = realpath(__DIR__ . '/..');
 
 // Initialize archive object
 $zip = new ZipArchive();
-$name = __DIR__ . '/../build/prod' . time() . '.zip';
-$zip->open($name, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+$buildName = __DIR__ . '/../build/prod' . time() . '.zip';
+$zip->open($buildName, ZipArchive::CREATE | ZipArchive::OVERWRITE);
 
 // Create recursive directory iterator
 /** @var SplFileInfo[] $files */
@@ -32,4 +32,4 @@ foreach ($files as $name => $file)
 // Zip archive will be created only after closing object
 $zip->close();
 
-echo $name . "\n";
+echo realpath($buildName) . "\n";

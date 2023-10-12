@@ -20,13 +20,14 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Generate build
-        run: php src/build.php
+        run: echo "build_file=$(php src/build.php)\n" >> $GITHUB_OUTPUT
+        id: generate_build
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
         with:
-          name: build_prod_${{ github.ref_name }}
-          path: build.txt
+          name: ${{ steps.generate_build.outputs.build_file }}
+          path: ${{ steps.generate_build.outputs.build_file }}
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -35,12 +36,12 @@ jobs:
       - name: Download a single artifact
         uses: actions/download-artifact@v3
         with:
-          name: build_prod_${{ github.ref_name }}
+          name: ${{ steps.generate_build.outputs.build_file }}
 
       - name: Output build contents
         run: ls -R /__w/
 
       - name: Output build contents
-        run: cat /__w/github-actions-test/github-actions-test/build.txt
+        run: cat ${{ steps.generate_build.outputs.build_file }}
 
 
