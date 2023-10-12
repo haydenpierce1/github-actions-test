@@ -13,6 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     container: php:latest
     steps:
+      - name: Install zip extention. FIXME
+        run: apt-get update && apt-get install libzip-dev
+      - name: PEcl install FIXME
+        run: pecl install zip
+
       - name: Display Tag Name
         run: echo "Tag name is ${{ toJson(github) }}"
 
