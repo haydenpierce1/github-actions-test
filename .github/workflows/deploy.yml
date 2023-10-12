@@ -29,7 +29,7 @@ jobs:
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ steps.generate_build.outputs.build_file }}
+          name: build_prod.zip
           path: ${{ steps.generate_build.outputs.build_file }}
   deploy:
     needs: build
@@ -39,12 +39,12 @@ jobs:
       - name: Download a single artifact
         uses: actions/download-artifact@v3
         with:
-          name: ${{ steps.generate_build.outputs.build_file }}
+          name: build_prod.zip
 
       - name: Output build contents
-        run: ls -R /__w/
+        run: ls ${{steps.download.outputs.download-path}}
 
       - name: Output build contents
-        run: cat ${{ steps.generate_build.outputs.build_file }}
+        run: echo ${{steps.download.outputs.download-path}}
 
 
