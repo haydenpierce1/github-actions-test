@@ -32,4 +32,4 @@ foreach ($files as $name => $file)
 // Zip archive will be created only after closing object
 $zip->close();
 
-echo realpath($buildName) . "\n";
+echo basename(realpath($buildName)) . "\n";
