@@ -37,14 +37,17 @@ jobs:
     container: php:latest
     steps:
       - name: Download a single artifact
+        id: download
         uses: actions/download-artifact@v3
         with:
           name: build_prod.zip
 
       - name: Output build contents
-        run: ls ${{steps.download.outputs.download-path}}
+        run: echo ${{steps.download.outputs.download-path}}
 
       - name: Output build contents
-        run: echo ${{steps.download.outputs.download-path}}
+        run: ls ${{steps.download.outputs.download-path}}
+
+
 
 
