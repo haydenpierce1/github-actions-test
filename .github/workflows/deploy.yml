@@ -14,9 +14,7 @@ jobs:
     container: php:latest
     steps:
       - name: Install zip extention. FIXME
-        run: apt-get update && apt-get -y install libzip-dev
-      - name: PEcl install FIXME
-        run: pecl install zip
+        run: apt-get update && apt-get -y install libzip-dev && pecl install zip && docker-php-ext-enable zip
 
       - name: Display Tag Name
         run: echo "Tag name is ${{ toJson(github) }}"
