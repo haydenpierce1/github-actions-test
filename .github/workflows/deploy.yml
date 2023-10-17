@@ -20,7 +20,7 @@ jobs:
         run: echo "Tag name is ${{ toJson(github) }}"
 
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Generate build
         run: echo "build_file=$(php src/build.php)\n" >> $GITHUB_OUTPUT
@@ -34,7 +34,7 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    container: php:latest
+    container: mini/eb-cli
     steps:
       - name: Download a single artifact
         id: download
