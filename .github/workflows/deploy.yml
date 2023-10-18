@@ -87,5 +87,8 @@ jobs:
       - name: Show EB config
         run: cat /root/.aws/config
 
+      - name: Show EB config
+        run: pwd
+
       - name: EB Deploy
         run: eb deploy --staged
