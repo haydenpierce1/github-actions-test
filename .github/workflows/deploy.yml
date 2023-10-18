@@ -53,8 +53,8 @@ jobs:
         run: |
           mkdir /root/.aws
           echo "[profile eb-cli]" >> /root/.aws/config
-          echo "aws_access_key_id = ${{ secrets.AWS_SECRET_KEY_ID }}
-          echo "aws_secret_access_key = ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          echo "aws_access_key_id = ${{ secrets.AWS_SECRET_KEY_ID }}" >> /root/.aws/config
+          echo "aws_secret_access_key = ${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> /root/.aws/config
 
       - name: Initialize EB CLI
         run: |
