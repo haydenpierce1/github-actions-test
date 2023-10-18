@@ -49,8 +49,11 @@ jobs:
       - name: Output build contents
         run: echo ${{steps.download.outputs.download-path}}
 
+
+
       - name: Initialize EB CLI
         run: |
+          mkdir /.elasticbeanstalk
           echo "deploy:" >> /.elasticbeanstalk/config.yml
           echo "  artifact: \${{steps.download.outputs.download-path}}" >> /.elasticbeanstalk/config.yml
           echo "branch-defaults:" >> /.elasticbeanstalk/config.yml
