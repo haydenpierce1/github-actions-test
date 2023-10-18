@@ -49,13 +49,18 @@ jobs:
       - name: Output build contents
         run: echo ${{steps.download.outputs.download-path}}
 
-
+      - name: Initialize AWS Credentials
+        run: |
+          mkdir /root/.aws
+          echo "[profile eb-cli]" >> /root/.aws/config
+          echo "aws_access_key_id = ${{ secrets.AWS_SECRET_KEY_ID }}
+          echo "aws_secret_access_key = ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Initialize EB CLI
         run: |
           mkdir /.elasticbeanstalk
           echo "deploy:" >> /.elasticbeanstalk/config.yml
-          echo "  artifact: \${{steps.download.outputs.download-path}}" >> /.elasticbeanstalk/config.yml
+          echo "  artifact: ${{steps.download.outputs.download-path}}" >> /.elasticbeanstalk/config.yml
           echo "branch-defaults:" >> /.elasticbeanstalk/config.yml
           echo "  default:" >> /.elasticbeanstalk/config.yml
           echo "    environment: My-app-2-env" >> /.elasticbeanstalk/config.yml
@@ -78,6 +83,9 @@ jobs:
 
       - name: Show EB config
         run: cat /.elasticbeanstalk/config.yml
+
+      - name: Show AWS config
+        run: cat /root/.aws/config
 
 
 
