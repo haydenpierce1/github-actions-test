@@ -84,8 +84,5 @@ jobs:
       - name: Show EB config
         run: cat /.elasticbeanstalk/config.yml
 
-      - name: Show AWS config
-        run: cat /root/.aws/config
-
-
-
+      - name: EB Deploy
+        run: eb deploy --staged
