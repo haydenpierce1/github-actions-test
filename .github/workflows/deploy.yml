@@ -49,32 +49,32 @@ jobs:
       - name: Output build contents
         run: echo ${{steps.download.outputs.download-path}}
 
-      - name: Output build contents
-        run: " echo -e \"
-deploy:
-  artifact: /${{steps.download.outputs.download-path}}
-branch-defaults:
-  default:
-    environment: My-app-2-env
-environment-defaults:
-  My-app-2-env:
-    branch: null
-    repository: null
-global:
-  application_name: my-app-2
-  default_ec2_keyname: null
-  default_platform: PHP 8.2 running on 64bit Amazon Linux 2023
-  default_region: us-east-2
-  include_git_submodules: true
-  instance_profile: null
-  platform_name: null
-  platform_version: null
-  profile: eb-cli
-  sc: null
-  workspace_type: Application
-        \""
+      - name: Initialize EB CLI
+        run: |
+          echo "deploy:" >> /.elasticbeanstalk/config.yml
+          echo "  artifact: \${{steps.download.outputs.download-path}}" >> /.elasticbeanstalk/config.yml
+          echo "branch-defaults:" >> /.elasticbeanstalk/config.yml
+          echo "  default:" >> /.elasticbeanstalk/config.yml
+          echo "    environment: My-app-2-env" >> /.elasticbeanstalk/config.yml
+          echo "environment-defaults:" >> /.elasticbeanstalk/config.yml
+          echo "  My-app-2-env:" >> /.elasticbeanstalk/config.yml
+          echo "    branch: null" >> /.elasticbeanstalk/config.yml
+          echo "    repository: null" >> /.elasticbeanstalk/config.yml
+          echo "global:" >> /.elasticbeanstalk/config.yml
+          echo "  application_name: my-app-2" >> /.elasticbeanstalk/config.yml
+          echo "  default_ec2_keyname: null" >> /.elasticbeanstalk/config.yml
+          echo "  default_platform: PHP 8.2 running on 64bit Amazon Linux 2023" >> /.elasticbeanstalk/config.yml
+          echo "  default_region: us-east-2" >> /.elasticbeanstalk/config.yml
+          echo "  include_git_submodules: true" >> /.elasticbeanstalk/config.yml
+          echo "  instance_profile: null" >> /.elasticbeanstalk/config.yml
+          echo "  platform_name: null" >> /.elasticbeanstalk/config.yml
+          echo "  platform_version: null" >> /.elasticbeanstalk/config.yml
+          echo "  profile: eb-cli" >> /.elasticbeanstalk/config.yml
+          echo "  sc: null" >> /.elasticbeanstalk/config.yml
+          echo "  workspace_type: Application" >> /.elasticbeanstalk/config.yml
 
-
+      - name: Show EB config
+        run: cat /.elasticbeanstalk/config.yml
 
 
 
