@@ -48,7 +48,7 @@ jobs:
 
       - name: Output build contents
         id: build_file
-        run: echo "build_file=${{ steps.download.outputs.download-path }}/$(ls ${{ steps.download.outputs.download-path }}) >> $GITHUB_OUTPUT
+        run: echo "build_file=${{ steps.download.outputs.download-path }}/$(ls ${{ steps.download.outputs.download-path }})" >> $GITHUB_OUTPUT
 
       - name: Output file name
         run: echo ${{ steps.build_file.outputs.build_file }}
