@@ -38,7 +38,7 @@ jobs:
       image: ghcr.io/haydenpierce1/eb-cli:latest
       credentials:
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ secrets.GH_ACCESS_TOKEN }}
     steps:
       - name: Download a single artifact
         id: download
