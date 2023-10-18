@@ -53,43 +53,43 @@ jobs:
       - name: Output file name
         run: echo ${{ steps.build_file.outputs.build_file }}
 
-#      - name: Initialize AWS Credentials
-#        run: |
-#          mkdir $HOME/.aws
-#          echo "[profile eb-cli]" >> $HOME/.aws/config
-#          echo "aws_access_key_id = ${{ secrets.AWS_SECRET_KEY_ID }}" >> $HOME/.aws/config
-#          echo "aws_secret_access_key = ${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $HOME/.aws/config
-#
-#      - name: Initialize EB CLI
-#        run: |
-#          mkdir /.elasticbeanstalk
-#          echo "deploy:" >> /.elasticbeanstalk/config.yml
-#          echo "  artifact: ${{steps.download.outputs.download-path}}" >> /.elasticbeanstalk/config.yml
-#          echo "branch-defaults:" >> /.elasticbeanstalk/config.yml
-#          echo "  default:" >> /.elasticbeanstalk/config.yml
-#          echo "    environment: My-app-2-env" >> /.elasticbeanstalk/config.yml
-#          echo "environment-defaults:" >> /.elasticbeanstalk/config.yml
-#          echo "  My-app-2-env:" >> /.elasticbeanstalk/config.yml
-#          echo "    branch: null" >> /.elasticbeanstalk/config.yml
-#          echo "    repository: null" >> /.elasticbeanstalk/config.yml
-#          echo "global:" >> /.elasticbeanstalk/config.yml
-#          echo "  application_name: my-app-2" >> /.elasticbeanstalk/config.yml
-#          echo "  default_ec2_keyname: null" >> /.elasticbeanstalk/config.yml
-#          echo "  default_platform: PHP 8.2 running on 64bit Amazon Linux 2023" >> /.elasticbeanstalk/config.yml
-#          echo "  default_region: us-east-2" >> /.elasticbeanstalk/config.yml
-#          echo "  include_git_submodules: true" >> /.elasticbeanstalk/config.yml
-#          echo "  instance_profile: null" >> /.elasticbeanstalk/config.yml
-#          echo "  platform_name: null" >> /.elasticbeanstalk/config.yml
-#          echo "  platform_version: null" >> /.elasticbeanstalk/config.yml
-#          echo "  profile: eb-cli" >> /.elasticbeanstalk/config.yml
-#          echo "  sc: null" >> /.elasticbeanstalk/config.yml
-#          echo "  workspace_type: Application" >> /.elasticbeanstalk/config.yml
-#
-#      - name: Show EB config
-#        run: cat /.elasticbeanstalk/config.yml
-#
-#      - name: Show EB config
-#        run: cat $HOME/.aws/config
-#
-#      - name: EB Deploy
-#        run: eb deploy --staged
+      - name: Initialize AWS Credentials
+        run: |
+          mkdir $HOME/.aws
+          echo "[profile eb-cli]" >> $HOME/.aws/config
+          echo "aws_access_key_id = ${{ secrets.AWS_SECRET_KEY_ID }}" >> $HOME/.aws/config
+          echo "aws_secret_access_key = ${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $HOME/.aws/config
+
+      - name: Initialize EB CLI
+        run: |
+          mkdir /.elasticbeanstalk
+          echo "deploy:" >> /.elasticbeanstalk/config.yml
+          echo "  artifact: ${{ steps.build_file.outputs.build_file }}" >> /.elasticbeanstalk/config.yml
+          echo "branch-defaults:" >> /.elasticbeanstalk/config.yml
+          echo "  default:" >> /.elasticbeanstalk/config.yml
+          echo "    environment: My-app-2-env" >> /.elasticbeanstalk/config.yml
+          echo "environment-defaults:" >> /.elasticbeanstalk/config.yml
+          echo "  My-app-2-env:" >> /.elasticbeanstalk/config.yml
+          echo "    branch: null" >> /.elasticbeanstalk/config.yml
+          echo "    repository: null" >> /.elasticbeanstalk/config.yml
+          echo "global:" >> /.elasticbeanstalk/config.yml
+          echo "  application_name: my-app-2" >> /.elasticbeanstalk/config.yml
+          echo "  default_ec2_keyname: null" >> /.elasticbeanstalk/config.yml
+          echo "  default_platform: PHP 8.2 running on 64bit Amazon Linux 2023" >> /.elasticbeanstalk/config.yml
+          echo "  default_region: us-east-2" >> /.elasticbeanstalk/config.yml
+          echo "  include_git_submodules: true" >> /.elasticbeanstalk/config.yml
+          echo "  instance_profile: null" >> /.elasticbeanstalk/config.yml
+          echo "  platform_name: null" >> /.elasticbeanstalk/config.yml
+          echo "  platform_version: null" >> /.elasticbeanstalk/config.yml
+          echo "  profile: eb-cli" >> /.elasticbeanstalk/config.yml
+          echo "  sc: null" >> /.elasticbeanstalk/config.yml
+          echo "  workspace_type: Application" >> /.elasticbeanstalk/config.yml
+
+      - name: Show EB config
+        run: cat /.elasticbeanstalk/config.yml
+
+      - name: Show EB config
+        run: cat $HOME/.aws/config
+
+      - name: EB Deploy
+        run: eb deploy --staged
