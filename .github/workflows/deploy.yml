@@ -34,7 +34,11 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    container: mini/eb-cli
+    container:
+      image: ghcr.io/haydenpierce1/eb-cli:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
     steps:
       - name: Download a single artifact
         id: download
