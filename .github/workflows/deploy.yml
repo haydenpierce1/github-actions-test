@@ -47,7 +47,7 @@ jobs:
           name: build_prod.zip
 
       - name: Output build contents
-        run: echo ${{steps.download.outputs.download-path}}
+        run: echo ${{ toJson(steps.download.outputs) }}
 
       - name: Initialize AWS Credentials
         run: |
