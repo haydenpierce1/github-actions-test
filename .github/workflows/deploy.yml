@@ -85,16 +85,7 @@ jobs:
         run: cat /.elasticbeanstalk/config.yml
 
       - name: Show EB config
-        run: cat /root/.aws/config
-
-      - name: Show EB config
         run: cat $HOME/.aws/config
-
-      - name: Show EB config
-        run: pwd
-
-      - name: Show home
-        run: echo $HOME
 
       - name: EB Deploy
         run: eb deploy --staged
