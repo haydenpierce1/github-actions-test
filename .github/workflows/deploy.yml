@@ -47,7 +47,11 @@ jobs:
           name: build_prod.zip
 
       - name: Output build contents
-        run: ls ${{ steps.download.outputs.download-path }}
+        id: build_file
+        run: echo "build_file=${{ steps.download.outputs.download-path }}/$(ls ${{ steps.download.outputs.download-path }}) >> $GITHUB_OUTPUT
+
+      - name: Output file name
+        run: echo ${{ steps.build_file.outputs.build_file }}
 
 #      - name: Initialize AWS Credentials
 #        run: |
